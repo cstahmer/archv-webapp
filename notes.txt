@@ -1,0 +1,9 @@
+USE AJAX to solve this problem
+
+when user clicks something, javascript will send POST request to php file, the same way html does with forms
+
+then handles the php output
+
+https://stackoverflow.com/questions/7165395/call-php-function-from-javascript
+
+
