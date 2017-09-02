@@ -1,8 +1,9 @@
 <!doctype HTML>
 <html>
-<body>
+<body style = "text-align: center">
   <div id="target" style="display:none">
     <?php
+
       $data = array(
         '-i' => $_POST["input"],
         '-o' => $_POST["output"],
@@ -21,15 +22,21 @@
 
   <br>
 
+    <hr>
+    <h2> SHOWKEYPOINTS </h2>
+    <hr>
+
+<!--
   <form action="upload.php" method="post" enctype="multipart/form-data">
     Select Image to upload:
     <input type="file" name="fileToUpload" id="fileToUpload">
     <input type="submit" value="Upload Image" name= "submit">
   </form>
+-->
 
   <br>
 
-  <form method="post">
+  <form name="showkeypoints" method="post">
     inputfile: <input type="text" name="input"><br>
     outputfile: <input type="text" name="output"><br>
     param: <input type="text" name="param"><br><br>

@@ -1,0 +1,46 @@
+<!doctype HTML>
+<html>
+<body style = "text-align: center">
+
+  <br>
+
+    <hr>
+    <h2> AJAX SHOWKEYPOINTS </h2>
+    <hr>
+
+
+  <button style="margin: 20px" name="post" onclick="postRequest()"> ShowKeypoints</button>
+  <div id="output"></div>
+
+
+
+  <script>
+    function loadResult() {
+      var div = document.getElementById("target");
+      var myData = div.innerHTML;
+    }
+
+    function postRequest () {
+      var http = new XMLHttpRequest();
+      var url = "showkeypoints.php";
+      var params = "input=seed.jpg&output=output.jpg&param=flickr_param";
+      http.open("POST", url, true);
+
+      http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+      http.onreadystatechange = function () {
+        if (http.readyState == 4 && http.status == 200) {
+          var data = JSON.parse(http.responseText);
+          var file = data["file"];
+          var result = document.createElement("img");
+          result.id = "result";
+          result.src = "../jetty/" + file + "?" + Date.now();
+          document.getElementById("output").appendChild(result);
+        }
+      }
+      http.send(params);
+    }
+
+  </script>
+</body>
+</html>
