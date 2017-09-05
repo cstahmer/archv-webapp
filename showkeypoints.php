@@ -15,8 +15,9 @@
 
 
   $result=curl_exec($curl);
-  echo $result[0];
 
   curl_close($curl);
+
+  echo $result[0];
  
 ?>

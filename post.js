@@ -1,9 +1,58 @@
 // September 4, 2017                      Arthur Koehl
-// [1] UPLOAD AJAX
+// [0] RESET FUNCTION
 
-function postUpload () {
+// something that needs to be called whenever you upload an image
+// deletes all the objects that are created in the functions below
+function resetFull()
+{
+  resetUpload();
+  resetShow();
+  //resetScan();
+  resetDraw();
+}
+
+function resetUpload() 
+{
+  //upload result
   document.getElementById("uploadDesc").innerHTML = "";
   document.getElementById("uploadDiv").innerHTML= "";
+}
+
+function resetShow ()
+{
+  //showkeypoints result
+  if (document.getElementById('showResult'))
+  {
+    var temp = document.getElementById('showResult');
+    document.getElementById('showOutput').removeChild(temp);
+  }
+}
+
+function resetDraw()
+{
+  //drawmatch result
+  if (document.getElementById('drawResult'))
+  {
+    var temp = document.getElementById('drawResult');
+    document.getElementById('drawOutput').removeChild(temp);
+  }
+}
+
+function restScan()
+{
+ //scanDatabase result
+  if (document.getElementById('scanResult'))
+  {
+    var temp = document.getElementById('scanResult');
+    document.getElementById('scanOutput').removeChild(temp);
+  }
+}
+
+
+// [1] UPLOAD AJAX
+function postUpload ()
+{
+  resetFull();
   var http = new XMLHttpRequest();
   var form = new FormData();
   var url = "upload.php";
@@ -11,6 +60,7 @@ function postUpload () {
   form.append("fileToUpload", file);
 
   http.open("POST", url, true);
+  http.send(form);
 
   http.onreadystatechange = function ()
   {
@@ -21,11 +71,15 @@ function postUpload () {
       if (!(data.includes("error")) && !(data.includes("Sorry")))  
       {
          var upload = document.createElement("img");
-         upload.id = "result";
+         var name = document.createElement("div");
+         name.id = "uploadName";
+         upload.id = "upload";
          upload.style.height = "300px";
          upload.src = http.responseText + "?" + Date.now();
          document.getElementById("uploadDiv").appendChild(upload);
-         document.getElementById("uploadDesc").innerHTML = "success: " + http.responseText;
+         document.getElementById("uploadDesc").innerHTML = "success!";
+         document.getElementById("uploadDiv").appendChild(name);
+         name.innerHTML = http.responseText;
       }
       else 
       {
@@ -33,7 +87,6 @@ function postUpload () {
       }
     }
   }
-  http.send(form);
 }
 
 
@@ -53,11 +106,31 @@ function postUpload () {
 //
 
 
+
 function postShowRequest () 
 {
+  resetShow();
+
+
+  // Parameters
+  var paramFile = "";
+  var imgFile = "";
+  var outputFile = "";
+
+  if (document.getElementById('ebba').checked) {
+    paramFile = "ballad_param";
+  }
+  if (document.getElementById('flickr').checked) {
+    paramFile = "flickr_param";
+  }
+
+  imgFile = '.' + document.getElementById('uploadName').innerHTML;
+  outputFile = "output.jpg"; 
+
+  var params = "input=" + imgFile + "&output=" + outputFile + "&param=" + paramFile;
   var http = new XMLHttpRequest();
   var url = "showkeypoints.php";
-  var params = "input=seed.jpg&output=output.jpg&param=flickr_param";
+  console.log(params);
   http.open("POST", url, true);
 
   http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -67,11 +140,67 @@ function postShowRequest ()
     if (http.readyState == 4 && http.status == 200) 
     {
         var data = JSON.parse(http.responseText);
-        var file = data["file"];
-        var result = document.createElement("img");
-        result.id = "result";
-        result.src = "../jetty/" + file + "?" + Date.now();
-        document.getElementById("output").appendChild(result);
+        if ( http.responseText.includes("file")) 
+        {
+          console.log(data);
+          var file = "";
+          var file = data["file"];
+          var result = document.createElement("img");
+          result.id = "showResult";
+          result.style.height = "300px";
+          result.src = "../jetty/" + file + "?t=" + new Date().getTime();
+          document.getElementById("showOutput").appendChild(result);
+        }
+        else 
+        {
+          console.log(data);
+        }
+    }
+  }
+  http.send(params);
+
+}
+
+function postScanRequest () 
+{
+  // Parameters
+  var imgFile = "";
+  var imageSet = "";
+  var keypoints = "";
+  var outputFile = "";
+  var paramFile = "";
+  outputFile = "output.txt";
+
+  imgFile = '.' + document.getElementById('uploadName').innerHTML;
+  if (document.getElementById('ebba').checked) {
+    paramFile = "ballad_param";
+    imageSet = "/home/arthur/imagesets/ballads/";
+    keypoints = "/home/arthur/keypoints/ballads/";
+  }
+  if (document.getElementById('flickr').checked) {
+    paramFile = "flickr_param";
+    imageSet = "/home/arthur/imagesets/BL-flickr/Smaller/";
+    keypoints = "/home/arthur/keypoints/bl-flickr/";
+  }
+
+
+
+  var params = "input=" + imgFile + "&imageset=" + imageSet + "&keypoints=" + keypoints + "&output=" + outputFile + "&param=" + paramFile;
+
+
+  var http = new XMLHttpRequest();
+  var url = "scandatabase.php";
+  http.open("POST", url, true);
+
+  http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+  http.onreadystatechange = function ()
+  {
+    if (http.readyState == 4 && http.status == 200) 
+    {
+        console.log(http.responseText);
+        var data = JSON.parse(http.responseText);
+        loadresult(data["file"]);
     }
   }
 
@@ -80,6 +209,7 @@ function postShowRequest ()
 
 function postDrawRequest () 
 {
+  resetDraw();
   var http = new XMLHttpRequest();
   var url = "drawkeypoints.php";
   var params = "input1=seed.jpg&input2=seed.jpg&output=output.jpg&param=flickr_param";
@@ -94,36 +224,41 @@ function postDrawRequest ()
         var data = JSON.parse(http.responseText);
         var file = data["file"];
         var result = document.createElement("img");
-        result.id = "result";
+        result.id = "drawResult";
         result.src = "../jetty/" + file + "?" + Date.now();
-        document.getElementById("output").appendChild(result);
+        document.getElementById("drawOutput").appendChild(result);
     }
   }
 
   http.send(params);
 }
 
-function postScanRequest () 
+function loadresult(path)
 {
-  var http = new XMLHttpRequest();
-  var url = "scandatabase.php";
-  var params = "input=seed.jpg&imagesets=~/BL-flickr/Smaller/&keypoints=~/keypoints/&ouput=output.txt&param=flickr_param";
-  http.open("POST", url, true);
+  var url = "../jetty/" + path;
+  var oReq = new XMLHttpRequest();
+  oReq.open("GET", url, true);
+  oReq.send();
 
-  http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  oReq.onreadystatechange = function() {
+    if (oReq.readyState == 4 && oReq.status == 200) {
+      var data = JSON.parse(oReq.responseText);
+      var path = data["path"];
+      var files = data["files"];
+      console.log(data);
+      var table = document.getElementById("scanTable");
+      for (var i in files)
+      {
+        row = table.rows[0];
+        var x = row.insertCell(0);
+        var temp = document.createElement("img");
+        temp.src = path + files[i]["name"];
+        x.appendChild(temp);
+        x.style.height =  "150px";
+        x.style.width =  "150px";
+        x.style.border =  "1px solid #333";
+      }
 
-  http.onreadystatechange = function ()
-  {
-    if (http.readyState == 4 && http.status == 200) 
-    {
-        var data = JSON.parse(http.responseText);
-        var file = data["file"];
-        var result = document.createElement("img");
-        result.id = "result";
-        result.src = "../jetty/" + file + "?" + Date.now();
-        document.getElementById("output").appendChild(result);
     }
   }
-
-  http.send(params);
 }
