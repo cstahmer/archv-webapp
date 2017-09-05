@@ -1,7 +1,9 @@
 /archv/*
 /jetty/*
 /uploads/*
+/backup/*
 
 /archv
 /jetty
 /uploads
+/backup
