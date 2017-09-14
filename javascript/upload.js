@@ -7,7 +7,7 @@ function postUpload ()
   // ========================================================
   var http = new XMLHttpRequest();
   var form = new FormData();
-  var url = "upload.php";
+  var url = "./php/upload.php";
 
   // parameters
   var file = document.getElementById("fileToUpload").files[0];
@@ -29,16 +29,16 @@ function postUpload ()
       if (!(data.includes("error")) && !(data.includes("Sorry")))  
       {
          var upload = document.createElement("img");
-         var name = document.createElement("div");
+         var name = document.createElement("p");
          name.id = "uploadName";
          upload.id = "upload";
-         upload.style.height = "300px";
-         upload.src = http.responseText + "?" + Date.now();
+         upload.style.width = "500px";
+         upload.src = "../../archv/uploads/" + http.responseText + "?" + Date.now();
          name.innerHTML = http.responseText;
 
          document.getElementById("uploadDiv").appendChild(upload);
          document.getElementById("uploadDesc").innerHTML = "success!";
-         document.getElementById("uploadDiv").appendChild(name);
+         document.getElementById("uploadDesc").appendChild(name);
       } // if
 
       else 

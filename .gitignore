@@ -1,9 +1,11 @@
 /archv/*
+/archive-vision/*
 /jetty/*
 /uploads/*
 /backup/*
 
 /archv
+/archive-vision/
 /jetty
 /uploads
 /backup
