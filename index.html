@@ -2,61 +2,68 @@
 <html>
 <head>
   <title> Archv Demo </title>
-  <script src="post.js"></script>
+
+  <!-- fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+
+  <!-- scripts -->
+  <script src="./javascript/upload.js"></script>
+  <!--
+  <script src="./javascript/show.js"></script>
+  <script src="./javascript/scan.js"></script>
+  <script src="./javascript/draw.js"></script>
+  -->
+
+  <!-- css -->
+  <link rel="stylesheet" href="./styles/mystyle.css">
 </head>
 
-<body style = "margin: auto; max-width: 1000px; min-height: 100vh; border: 1px solid #333; border-top: 0px solid white; border-bottom: 0px solid white; padding: 20px">
+<body>
+<div class="sidebar"> 
+  <h1 class="sidebar-h1"> Archv </h1>
+  <ul class="sidebar-ul">
+    <li class="sidebar-li"><a href="index.html"> home </a></li>
+    <li class="sidebar-li"><a href="./pages/overview.html"> overview </a></li>
+    <li class="sidebar-li"><a href="./pages/download.html"> download </a></li>
+    <li class="sidebar-li"><a href="./pages/api.html"> api </a></li>
+    <li class="sidebar-li"><a href="./pages/try.html"> try </a></li>
+    <li class="sidebar-li"><a href="./pages/imagesets.html"> imagesets </a></li>
+    <li class="sidebar-li"><a href="./pages/contact.html"> contact </a></li>
+  </ul>
+</div>
 
-    <h1 style="text-align: center"> ARCHV </h1>
-    <p>Archive-Vision (archv or arch-v) is a collection of computer vision programs written in C++ which utilizes functions from the OpenCV library to perform analysis on large image sets. The primary function is to locate recurring patterns within each image in a set of images. Arch-v locates features from a given seed image within an imageset and outputs the image(s) with the most similarities. The first program, processImages.cpp, generates text files containing the keypoints and their mathmatical descriptors; with the keypoints, analysis can be done to compare images and find matches. The second program, scanDatabase.cpp, finds the images that are most similar to a given seed image. The third program, drawMatches.cpp, compares two images, locates their matches based on homography, then draws the keypoints and their relative match; this is most useful when the best matches have already been found.</p>
-    <p>The best use for arch-v is to find images which are similar to a seed image. The standard method is to process the image set that you will compare your seed image to, scan through the generated dataset with a given seed image to find the best matches, then draw identifiers for matching features between the seed image and its best match.</p>
-    
-    <hr>
-    <h2 style="text-align: center"> Upload Image </h2>
-    <hr>
+<div class="main">
+    <div class="text">
+    <h1 class="main-h1"> Scan Database </h1>
     <input type="file" name="fileToUpload" id="fileToUpload">
-    <button style="margin: 20px" name="post" onclick="postUpload()"> Upload </button>
-    <center>
-    <div id="uploadDiv"></div>
-    <div id="uploadDesc"></div>
-    </center>
-
-    <hr>
-    <h2 style="text-align: center"> Choose Image Set </h2>
-    <hr>
+    <button name="post" onclick="postUpload()"> Upload </button>
 
 
+    <br><br>
+    <table>
+      <tr>
+	<td>
+        	<div id="uploadDiv" style="margin: 30px; border: 1px solid #333; display: block; min-height: 200px; min-width: 500px"> </div>
+	</td>
+	<td valign="top">
+        <div style="margin-top: 30px" id="uploadDesc"></div>
+	</td>
+      </tr>
+    </table>
 
-    <input type="radio" id="ebba" name="imageset"> Ebba <br>
-    <input type="radio" id="flickr" name="imageset"> BL-flickr <br>
+    <input type="radio" id="ebba" name="imageset"> Ebba <input type="radio" id="flickr" name="imageset"> BL-flickr <br>
+    <br><br>
 
-    <hr>
-    <h2 style="text-align: center"> Show Keypoints </h2>
-    <hr>
+    <button name="post" onclick="postScanRequest()"> Scan Database</button>
 
-    <button style="margin: 20px" name="post" onclick="postShowRequest()"> Show Keypoints</button>
-    <center><div id="showOutput"></div></center>
-
-    <hr>
-    <h2 style="text-align: center"> Scan Database </h2>
-    <hr>
-    <button style="margin: 20px" name="post" onclick="postScanRequest()"> Scan Database</button>
-    <h3> results table </h3>
-    <center>
     <table id="scanTable">
       <tr>
       </tr>
     </table>
-    </center>
-    <h4> draw matches button under each element </h3>
-    <center><div id="scanOutput"></div></center>
+    <div id="scanOutput"></div>
 
 
 
-    <button style="margin: 20px" name="post" onclick="postDrawRequest()"> Draw Matches</button>
-    <center><div id="drawwOutput"></div></center>
-
-  
-
+</div>
 </body>
 </html>

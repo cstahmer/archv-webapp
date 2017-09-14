@@ -1,11 +1,21 @@
+<<<<<<< HEAD
+=======
+/archv/*
+>>>>>>> home-dev
 /archive-vision/*
 /jetty/*
 /uploads/*
 /outputs/*
 /backup/*
 
+<<<<<<< HEAD
 /archive-vision/
 /jetty/
+=======
+/archv
+/archive-vision/
+/jetty
+>>>>>>> home-dev
 /uploads
 /outputs/
 /backup
