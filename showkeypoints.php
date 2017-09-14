@@ -10,6 +10,7 @@
   $baseurl = "localhost:8888/show/show?";
 
   $url = $baseurl.$query;
+  echo $url;
 
   $curl = curl_init($url);  
 

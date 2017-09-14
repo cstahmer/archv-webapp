@@ -7,7 +7,7 @@ function resetFull()
 {
   resetUpload();
   resetShow();
-  //resetScan();
+  resetScan();
   resetDraw();
 }
 
@@ -38,7 +38,7 @@ function resetDraw()
   }
 }
 
-function restScan()
+function resetScan()
 {
  //scanDatabase result
   if (document.getElementById('scanResult'))
@@ -118,19 +118,22 @@ function postShowRequest ()
   var outputFile = "";
 
   if (document.getElementById('ebba').checked) {
-    paramFile = "ballad_param";
+    paramFile = "/var/www/vhost/ds.lib.ucdavis.edu/htdocs/archv/jetty/ballad_param";
   }
   if (document.getElementById('flickr').checked) {
-    paramFile = "flickr_param";
+    paramFile = "/var/www/vhost/ds.lib.ucdavis.edu/htdocs/archv/jetty/flickr_param";
   }
 
   imgFile = '.' + document.getElementById('uploadName').innerHTML;
-  outputFile = "output.jpg"; 
+  outputFile = "/var/www/vhost/ds.lib.ucdavis.edu/htdocs/archv/outputs/output.jpg"; 
 
   var params = "input=" + imgFile + "&output=" + outputFile + "&param=" + paramFile;
   var http = new XMLHttpRequest();
   var url = "showkeypoints.php";
-  console.log(params);
+  console.log(imgFile);
+  console.log(outputFile);
+  console.log(paramFile);
+
   http.open("POST", url, true);
 
   http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -139,22 +142,26 @@ function postShowRequest ()
   {
     if (http.readyState == 4 && http.status == 200) 
     {
-        var data = JSON.parse(http.responseText);
+	console.log(http.responseText);
+        /*var data = JSON.parse(http.responseText);
         if ( http.responseText.includes("file")) 
         {
           console.log(data);
           var file = "";
           var file = data["file"];
+	  var temp = file.split('/');
+	  var fname = temp[2];
           var result = document.createElement("img");
           result.id = "showResult";
           result.style.height = "300px";
-          result.src = "../jetty/" + file + "?t=" + new Date().getTime();
+          result.src = outputFile + "?t=" + new Date().getTime();
           document.getElementById("showOutput").appendChild(result);
         }
         else 
         {
           console.log(data);
         }
+	*/
     }
   }
   http.send(params);
@@ -169,7 +176,7 @@ function postScanRequest ()
   var keypoints = "";
   var outputFile = "";
   var paramFile = "";
-  outputFile = "output.txt";
+  outputFile = "../outputs/output.txt";
 
   imgFile = '.' + document.getElementById('uploadName').innerHTML;
   if (document.getElementById('ebba').checked) {
@@ -212,7 +219,7 @@ function postDrawRequest ()
   resetDraw();
   var http = new XMLHttpRequest();
   var url = "drawkeypoints.php";
-  var params = "input1=seed.jpg&input2=seed.jpg&output=output.jpg&param=flickr_param";
+  var params = "input1=seed.jpg&input2=seed.jpg&output=../outputs/output.jpg&param=flickr_param";
   http.open("POST", url, true);
 
   http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
