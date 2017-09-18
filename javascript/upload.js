@@ -33,7 +33,7 @@ function postUpload ()
          name.id = "uploadName";
          upload.id = "upload";
          upload.style.width = "500px";
-         upload.src = "../../archv/uploads/" + http.responseText + "?" + Date.now();
+         upload.src = "../../archvjetty/archv_webapp/uploads/" + http.responseText + "?" + Date.now();
          name.innerHTML = http.responseText;
 
          document.getElementById("uploadDiv").appendChild(upload);

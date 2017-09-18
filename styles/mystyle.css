@@ -8,7 +8,6 @@ body {
 }
 
 
-
 /* ================================================
  * SideBar
 /* ================================================ */
@@ -55,14 +54,22 @@ body {
   background-color: #4caf50;
 }
 
-.text {
-  margin: auto;
-  max-width: 800px;
-}
 
 /* ================================================
  * Main
 /* ================================================ */
+
+.inline-code {
+	width: 760px;
+	background-color: #dddddd;
+	padding: 20px;
+}
+
+.text {
+  margin: auto;
+  max-width: 800px;
+  width: 800px;
+}
 
 .main {
   min-height: 100vh;
@@ -76,4 +83,14 @@ body {
   text-align: left;
   color: #333;
   margin-left: -40px;
+}
+
+.main-h2 {
+  text-align: left;
+  color: #333;
+}
+
+.main-h3 {
+  text-align: left;
+  color: #333;
 }

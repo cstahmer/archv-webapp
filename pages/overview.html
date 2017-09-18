@@ -1,0 +1,140 @@
+<!doctype HTML>
+<html>
+<head>
+<title> Archv Demo </title>
+
+<!-- fonts -->
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+
+<!-- scripts -->
+<script src="../javascript/upload.js"></script>
+<!--
+<script src="./javascript/show.js"></script>
+<script src="./javascript/scan.js"></script>
+<script src="./javascript/draw.js"></script>
+-->
+
+<!-- css -->
+<link rel="stylesheet" href="../styles/mystyle.css">
+</head>
+
+<body>
+<div class="sidebar"> 
+	<h1 class="sidebar-h1"> Archv </h1>
+	<ul class="sidebar-ul">
+		<li class="sidebar-li"><a href="../index.html"> home </a></li>
+		<li class="sidebar-li"><a href="overview.html"> overview </a></li>
+		<li class="sidebar-li"><a href="download.html"> download </a></li>
+		<li class="sidebar-li"><a href="api.html"> api </a></li>
+		<li class="sidebar-li"><a href="try.html"> try </a></li>
+		<li class="sidebar-li"><a href="imagesets.html"> imagesets </a></li>
+		<li class="sidebar-li"><a href="contact.html"> contact </a></li>
+	</ul>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+	<!-- TEXT -->
+	<div class="text">
+
+		<!-- INTRO -->
+		<h1 class="main-h1"> Archive-Vision </h1>
+		<p> 
+		Archive vision provides a model for the computational analysis of large sets of images. 
+		Foremost, it is a tool for pattern recognition, finding recurring visual elements within the set and quantitatively ranking their differences. 
+		The application uses SURF feature detection and extraction to find keypoints within the images to be compared. 
+		The keypoints are then matched using their descriptors, and those matches are then filtered based on their homography. 
+		The application has four programs that can be used in conjunction or separately depending on your needs:
+		</p>
+		<ol class="main-ol">
+			<li class="main-li"> <b>showKeypoints</b> - a tool to find and display the keypoints of an image given certain SURF parameters </li>
+			<li class="main-li"> <b>processImages</b> - a tool to process an entire directory of images and output files containing their keypoints and descriptors in YML format </li>
+			<li class="main-li"> <b>scanDatabase</b> - a tool to find matches between a seed image and a directory of files containing keypoints and descriptors of an image set. </li>
+			<li class="main-li"> <b>drawMatches</b> - a tool that draws two images and their robust matches </li>
+		</ol>
+		<hr>
+		<!-- INTRO -->
+
+
+		<!-- SET UP -->
+		<h1 class="main-h1"> Setting Up Archv </h1>
+		<p> To use archv, you need to have <a href="http://opencv.org">OpenCV</a> installed. </p>
+
+		<h3 class="main-h3"> Installing Opencv </h3>
+		<p>For OpenCV, you need several dependencies: gcc, g++, cmake and several video and image libraries specified on their site. For Linux, use these links to install OpenCV:</p>
+		<ul class="main-ul">
+			<li class="main=li"> <a href=http://docs.opencv.org/2.4/doc/tutorials/introduction/table_of_content_introduction/table_of_content_introduction.html> Introduction to OpenCV </a></li>
+			<li class="main=li"> <a href=http://docs.opencv.org/2.4/doc/tutorials/introduction/linux_install/linux_install.html#linux-installation> Installation on Linux</a> </li>
+			<li class="main=li"> <a href=https://help.ubuntu.com/community/OpenCV> Ubuntu Documentation: OpenCV </a></li>
+		</ul>
+
+		<p> Provided is a simplified version of the process for building OpenCV on Unix based systems: </p>
+		<ul class="main-ul">
+			<li class="main-li"> Download all of the dependices required for OpenCV</li>
+			<li class="main-li"> Download the zipped OpenCV file from their website</li>
+			<li class="main-li"> Unzip the OpenCV archive</li>
+			<li class="main-li"> Enter the Opencv and build using cmake</li>
+			<li class="main-li"> Set up configuration to link the OpenCV library</li>
+			<li class="main-li"> Verify the library has been linked correctly</li>
+		</ul>
+
+		<h3 class="main-h3"> Compiling Archv </h3>
+		<p> 
+		Once OpenCV is installed and the libraries are included, go to your Archv directory and run make all.
+		You should be left with an executable (.exe) version of each program: processImages.exe, scanDatabase.exe, showKeypoints.exe and drawMatches.exe.
+		</p>
+		<hr>
+		<!-- SET UP -->
+
+		<!-- SHOW KEYPOINTS -->
+		<h1 class="main-h1"> Extracting Keypoints </h1>
+
+		<p> 
+		Archv uses SURF (<a href="http://www.vision.ee.ethz.ch/~surf/index.html">SURF Website</a>) for keypoint detection and neighbourhood description.
+		SURF is fast, scale invariant and orientation invariant, making it an ideal tool for finding matches over an image set. 
+		In particular, this project demonstrates the flexibiliy of SURF keypoint detection for Early Modern imagesets, where there exists wide vairance in printing quality.
+		</p>
+
+		<p> 
+		Archv builds upon tools provided by OpenCV, an open source and powerful library for image analysis. 
+		OpenCV's documentation can be found on their website: <a href="http://opencv.org"> opencv.org </a>
+		</p>
+
+		<p> 
+		The program showKeypoints allows the user to test the parameters that SURF uses for keypoint detection. 
+		This is useful as those parameters need to be tweaked according to whatever image set is being tested.
+		SURF parameters that work well for one image set might not work at all for another.
+		</p>
+
+		<p>
+		<b> showKeypoints </b> reads in a SURF parameter file, an image, and an output file path. 
+		It then outputs to an image file a copy of the original image with circles drawn representing the detected keypoints.
+		</p>
+
+		<p> 
+		Usage for showKeypoints: 
+		</p>
+		<div class="inline-code"> 
+			$ ./showKeypoints.exe -i &ltpath to seed image&gt -o &ltpath to output file.jpg&gt -p  &lt path to parameter file&gt
+		</div>
+	  <hr>
+	  <!-- SHOW KEYPOINTS -->
+
+
+
+			<!-- PROCESS IMAGES -->
+			<h1 class="main-h1"> Processing an Image Set </h1>
+			<p> <b>processImages</b> reads in a parameter file (for SURF), an input directory that contains the images to be processed, and an output directory to put the YAML files containing their discovered keypoints and their descriptors. </p>
+			<h3 class="main-h3"> Using Process Images </h3>
+			<h4>
+				<!-- PROCESS IMAGES -->
+
+
+
+
+
+			</div> <!-- TEXT -->
+		</div> <!-- MAIN -->
+		</body>
+		</html>
