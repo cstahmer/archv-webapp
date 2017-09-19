@@ -107,6 +107,8 @@
 		SURF parameters that work well for one image set might not work at all for another.
 		</p>
 
+		<h3 class="main-h3"> Using showKeypoints </h3>
+
 		<p>
 		<b> showKeypoints </b> reads in a SURF parameter file, an image, and an output file path. 
 		It then outputs to an image file a copy of the original image with circles drawn representing the detected keypoints.
@@ -118,23 +120,84 @@
 		<div class="inline-code"> 
 			$ ./showKeypoints.exe -i &ltpath to seed image&gt -o &ltpath to output file.jpg&gt -p  &lt path to parameter file&gt
 		</div>
-	  <hr>
-	  <!-- SHOW KEYPOINTS -->
+		<p> 
+		Show keypoints only works with one image as an input. Its use can be expanded to process an entire image set using process images.
+		</p>
+		<hr>
+		<!-- SHOW KEYPOINTS -->
 
 
 
-			<!-- PROCESS IMAGES -->
-			<h1 class="main-h1"> Processing an Image Set </h1>
-			<p> <b>processImages</b> reads in a parameter file (for SURF), an input directory that contains the images to be processed, and an output directory to put the YAML files containing their discovered keypoints and their descriptors. </p>
-			<h3 class="main-h3"> Using Process Images </h3>
-			<h4>
-				<!-- PROCESS IMAGES -->
+		<!-- PROCESS IMAGES -->
+		<h1 class="main-h1"> Processing an Image Set </h1>
+		<p> 
+		The program processImages allows the user to extract and store all the keypoints and their descriptors for an entire image set.
+		For each image in the set, the SURF keypoints and their descriptors are extracted and recorded in a YAML file.
+		When completed, the user will have a directory of YAML files corresponding to the images from the set.
+		This is a required step for the next program, scanDatabase. 
+		</p>
+
+		<h3 class="main-h3"> Using processImages </h3>
+		<p>
+		<b>processImages</b> reads in a parameter file (for SURF), an input directory that contains the images to be processed, and an output directory to put the YAML files containing their discovered keypoints and their descriptors.
+		Make sure that the output directory exists and is empty before running this program.
+		This step can take a long time depending on the number of images, and the number of keypoints.
+	  </p>
+		<p> 
+		Usage for processImages: 
+		</p>
+		<div class="inline-code"> 
+			$ ./processImages.exe -i &ltpath to imageset &gt -o &ltpath to output directory&gt -p  &lt path to parameter file&gt
+		</div>
+		<p>
+		For an example of a yml file containing keypoints and descriptors look at the archv readme (<a href="https://bitbucket.org/cstahmer/archv">link</a>).
+		Once this step is completed, you can run scanDatabase to find matches within your image set.
+		</p>
+		<hr>
+	  <!-- PROCESS IMAGES -->
+
+		<!-- SCAN DATABASE -->
+		<h1 class="main-h1"> Finding Matches </h1>
+		<p> 
+		The program scanDatabase reads in your seed image, extracts the keypoints and descriptors for that image, and compares that information with the keypoints and descriptors from every .yml file.
+		Each comparison is done using a robust filter, that checks for sensitivity, symmetry, as well as geometric proximity of the matches. 
+		Images are then ranked based on the number of good matches (post filter) they have with the seed image.
+		</p>
+		<h3 class="main-h3"> Using scanDatabase  </h3>
+		<p>
+		<b>scanDatabase</b> reads in a seed image, the directory of .yml files, a filepath to an output json (text) file, and the path to the SURF parameter file.
+	  </p>
+		<p> 
+		Usage for scanDatabase:: 
+		</p>
+		<div class="inline-code"> 
+			$ ./scanDatabase.exe -i &ltpath to seed image&gt -d &ltpath to input directory&gt -k &ltpath to keypoints directory&gt -o &ltpath to output file&gt -p &ltpath to parameter filea&gt
+		</div>
+		<p> 
+		The output file contains a ranked list of each matching image and the number of robust matches.
+		</p>
+	  <hr>	
+		<!-- SCAN DATABASE -->
 
 
+		<!-- DRAW MATCHES -->
+		<h1 class="main-h1"> Comparing Images </h1>
+		<p> 
+		The program drawMatches allows the user to see the matching robust keypoints between two images.
+		Generally, its best use is comparing the matches found using scan database with the seed image used. 
+		</p>
+		<h3 class="main-h3"> Using drawMatches  </h3>
+		<p>
+		<b>drawMatches</b> takes as input two images, the path to an output image file as well as the path to the parameter file. 
+		The code is self contained so you can input any two images and any SURF parameter file to find the keypoints that match and have passed the robust homography filter.
+		</p>
+		<div class="inline-code"> 
+			$ ./drawMatches.exe -i1 &ltpath to seed image one&gt -i2 &ltpath to image for comparison&gt -o &ltpath to output file&gt -p &ltpath to parameter filea&gt
+		</div>
+		<!-- DRAW MATCHES -->
 
 
-
-			</div> <!-- TEXT -->
-		</div> <!-- MAIN -->
-		</body>
-		</html>
+		</div> <!-- TEXT -->
+	</div> <!-- MAIN -->
+</body>
+</html>
