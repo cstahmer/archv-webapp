@@ -39,12 +39,149 @@
 	<div class="text">
 
 		<!-- INTRO -->
-			<!-- EMBEDDED JETTY -->
-			<!-- LINK TO REPOSITORY JETTY -->
-			<!-- TAR OF JETTY -->
+		<h1 class="main-h1"> Archv API </h1>
+		<p> 
+		Archv has a REST API implemented using Eclipse Jetty (<a href="http://www.eclipse.org/jetty/documentation/9.4.7.v20170914/">Documentation</a>).
+		The Jetty servlet is meant to be embedded within the Archv application.
+		When the servlet is started, the four programs of archv can be interfaced with using HTTP GET and POST requests.
+		</p>
+		<p>
+		If you want to set up the servlet on your system, you can clone the repository here: <a href="https://github.com/avkoehl">Github</a>.
+		</p>
+		<p>
+		Otherwise, download the tar archive <a href="jetty.tar">here</a>.
+		</p>
+		<p>
+		What follows are the descriptions for interfacing with Archv through localhost served on port 8888.
+		Each program can be accessed through a base url.
+		The parameters are passed to the program following a specific format through the url.
+		The structure is something like this:
+		<div class="inline-code">
+			http://localhost:8888/show/show?param1=value&amp;param2=value...
+		</div>
+		<p>
+		Upon success, a json message will be recieved from the url.
+		</p>
+		<div class="inline-code">
+			{"file": "path/to/outputfile"}
+		</div>
+		<br>
+		<hr>
+		<!-- INTRO -->
+
 		<!-- SHOW KEYPOINTS -->
+		<h1 class="main-h1"> Show Keypoints </h1>
+		<p> 
+		The base url for showKeypoints:
+		</p>
+		<div class="inline-code">
+			http://localhost:8888/show/show?
+		</div>
+
+		<p> 
+		The parameters that can be passed to showKeypoints:
+		</p>
+		<div class="inline-code">
+		-i = path/to/inputimage <br>
+		-o = path/to/output.jpg <br>
+		-p = path/to/paramfile <br>
+		</div>
+
+		<p> 
+		The full url:
+		</p>
+		<div class="inline-code">
+			http://localhost:8888/show/show?-i=/path/to/image&amp;-o=/path/to/output.jpg&amp;-p=/path/param/
+		</div>
+		<br>
+		<hr>
+		<!-- SHOW KEYPOINTS -->
+
 		<!-- PROCESS IMAGES -->
+		<h1 class="main-h1"> Process Images </h1>
+		<p> 
+		The base url for processImages:
+		</p>
+		<div class="inline-code">
+			http://localhost:8888/process/process?
+		</div>
+
+		<p> 
+		The parameters that can be passed to processImages:
+		</p>
+		<div class="inline-code">
+		-i = path/to/imageset/ <br>
+		-o = path/to/keypointdirectory/ <br>
+		-p = path/to/paramfile <br>
+		</div>
+
+		<p> 
+		The full url:
+		</p>
+		<div class="inline-code">
+			http://localhost:8888/process/process?-i=/path/to/image&amp;-o=/path/to/keypointdir/&amp;-p=/path/param/
+		</div>
+		<br>
+		<hr>
+		<!-- PROCESS IMAGES -->
+
 		<!-- SCAN DATABASE -->
+		<h1 class="main-h1"> Scan Database </h1>
+		<p> 
+		The base url for scanDatabase:
+		</p>
+		<div class="inline-code">
+			http://localhost:8888/scan/scan?
+		</div>
+
+		<p> 
+		The parameters that can be passed to scanDatabase::
+		</p>
+		<div class="inline-code">
+			-i = path/to/inputimage <br>
+			-d = path/to/imageset <br>
+			-k = path/to/keypointdirectory <br>
+			-o = path/to/output.json <br>
+			-p = path/to/paramfile <br>
+		</div>
+
+		<p> 
+		The full url:
+		</p>
+		<div class="inline-code">
+			http://localhost:8888/scan/scan?-i=/path/to/image&amp;-d=/path/to/imageset/&amp;-k=/path/to/keypointdir/&amp;-o=/path/to/output.json&amp;-p=/path/param/
+		</div>
+		<br>
+		<hr>
+		<!-- SCAN DATABASE -->
+
+		<!-- DRAW MATCHES -->
+		<h1 class="main-h1"> Draw Matches </h1>
+		<p> 
+		The base url for drawMatches:
+		</p>
+		<div class="inline-code">
+			http://localhost:8888/draw/draw?
+		</div>
+
+		<p> 
+		The parameters that can be passed to drawMatches::
+		</p>
+		<div class="inline-code">
+			-i1 = path/to/image1 <br>
+			-i2 = path/to/image2 <br>
+			-o = path/to/output.jpg <br>
+			-p = path/to/paramfile <br>
+		</div>
+
+		<p> 
+		The full url:
+		</p>
+		<div class="inline-code">
+			http://localhost:8888/draw/draw?-i1=/path/to/image&amp;-i2=/path/to/image2&amp;-o=/path/to/output.json&amp;-p=/path/param/
+		</div>
+		<br>
+		<hr>
 		<!-- DRAW MATCHES -->
 
 		</div> <!-- TEXT -->
