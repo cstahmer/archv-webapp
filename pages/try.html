@@ -9,8 +9,8 @@
 <!-- scripts -->
 <script src="../javascript/upload.js"></script>
 <script src="../javascript/show.js"></script>
+<script src="../javascript/scan.js"></script>
 <!--
-<script src="./javascript/scan.js"></script>
 <script src="./javascript/draw.js"></script>
 -->
 
@@ -40,15 +40,21 @@
 
   <!-- INTRO -->
   <h1 class="main-h1"> Demo Archv </h1>
-  <img id="SeedImg" src="../sample/21889-30.jpg"></img>
+  <img id="SeedImg" src="http://beeb.english.ucsb.edu/Thumbnails101613/30182-30.jpg"</img>
 
   <!-- SHOW KEYPOINTS -->
   <h1 class="main-h1"> Show Keypoints </h1>
-  <button name="postShow" onclick ="postShowRequest()">ShowKeypoints</div>
+  <button name="postShow" onclick ="postShowRequest()">ShowKeypoints</button>
+  <br>
+  <br>
   <div id="showOutput"></div>
-  <!-- PROCESS IMAGES -->
+
   <!-- SCAN DATABASE -->
-  <!-- DRAW MATCHES -->
+  <h1 class="main-h1"> Scan Database </h1>
+  <button name="postScan" onclick = "postScanRequest()">ScanDatabase</button>
+  <br>
+  <br>
+  <div style="display:flex; flex-direction: row; flex-flow:wrap; width: 1000px; min-height: 600px;" id="scanResult"></div>
 
   </div> <!-- TEXT -->
 </div> <!-- MAIN -->

@@ -17,7 +17,7 @@ function postShowRequest ()
 // Parameters
 // ====================================================================================
   var paramFile = "ballad_param";
-  var imgFile = "../sample/21889-30.jpg";
+  var imgFile = "../../../include/Ballads/Images/30182-30.jpg";
   var outputFile = "../outputs/output.jpg"; 
   var params = "input=" + imgFile + "&output=" + outputFile + "&param=" + paramFile;
 
@@ -38,11 +38,9 @@ function postShowRequest ()
   {
     if (http.readyState == 4 && http.status == 200) 
     {
-	      console.log(http.responseText);
-        /*var data = JSON.parse(http.responseText);
+        var data = JSON.parse(http.responseText);
         if ( http.responseText.includes("file")) 
         {
-          console.log(data);
           var file = data["file"];
       	  var temp = file.split('/');
       	  var fname = temp[2];
@@ -56,7 +54,6 @@ function postShowRequest ()
         {
           console.log(data);
         }
-	*/
     } // if response code and status are correct
   }// callback function on response
 }

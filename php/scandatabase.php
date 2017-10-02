@@ -9,7 +9,7 @@
   );
 
   $query = http_build_query($data);
-  $baseurl = "localhost:8888/scan/scan?";
+  $baseurl = "ds.lib.ucdavis.edu:8888/scan/scan?";
 
   $url = $baseurl.$query;
 
