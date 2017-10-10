@@ -8,11 +8,7 @@
 
   <!-- scripts -->
   <script src="./javascript/upload.js"></script>
-  <!--
-  <script src="./javascript/show.js"></script>
-  <script src="./javascript/scan.js"></script>
-  <script src="./javascript/draw.js"></script>
-  -->
+  <script src="./javascript/index_scan.js"></script>
 
   <!-- css -->
   <link rel="stylesheet" href="./styles/mystyle.css">
@@ -51,18 +47,16 @@
       </tr>
     </table>
 
-    <input type="radio" id="ebba" name="imageset"> Ebba <input type="radio" id="flickr" name="imageset"> BL-flickr <br>
+    <input type="radio" checked id="ebba" value="Ebba" name="imageset"> Ebba <input type="radio" id="flickr" value="BL-flickr" name="imageset"> BL-flickr
+    <br>
     <br><br>
 
     <button name="post" onclick="postScanRequest()"> Scan Database</button>
-
-    <table id="scanTable">
-      <tr>
-      </tr>
-    </table>
-    <div id="scanOutput"></div>
-
-
+    <br>
+    <p id="status"></p>
+    <p id="error"></p>
+    <br>
+    <div style="display:flex; flex-direction: row; flex-flow:wrap; width: 1000px; min-height: 600px;" id="scanResult"></div>
 
 </div>
 </body>
