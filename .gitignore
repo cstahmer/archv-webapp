@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 /archv/*
->>>>>>> home-dev
 /archive-vision/*
 /jetty/*
 /uploads/*
@@ -10,16 +7,9 @@
 /sample/*
 /images/*
 
-<<<<<<< HEAD
-/archive-vision/
-/jetty/
-/sample/
-=======
 /archv
 /archive-vision/
-/jetty
-/sample
->>>>>>> home-dev
+/jetty/
 /uploads/
 /outputs/
 /backup
