@@ -77,12 +77,12 @@ function loadresult(path)
 
       for (var i in files)
       {
-        var res = document.createElement("result");
+        var res = document.createElement("div");
         var img = document.createElement("img");
         var desc = document.createElement("div");
 
         res.style.height =  "200px";
-        res.style.width =  "110px";
+        res.style.width =  "150px";
         res.style.border =  "3px solid #333";
         res.style.marginRight =  "10px";
         res.style.marginBottom =  "10px";
@@ -91,11 +91,15 @@ function loadresult(path)
 
         img.src = "/archv/" + path.slice(3) + files[i]["name"] + ".jpg";
         img.style.height =  "150px";
-        img.style.width =  "100%";
+        img.style.width =  "150px";
 
-        desc.innerHTML = "<center><br><i>distance: " +files[i]["distance"] + "</i></center>";
+        desc.innerHTML = "<center>" + files[i]["name"] + "<br><i>distance: " +files[i]["distance"] + "</i></center>";
         desc.style.height =  "50px";
-        desc.style.width =  "110px";
+        desc.style.width =  "150px";
+        desc.style.overflow= "hidden";
+        desc.style.display= "block";
+        desc.style.textOverflow =  "ellipsis";
+        desc.style.whiteSpace =  "nowrap";
 
         res.appendChild(img);
         res.appendChild(desc);
