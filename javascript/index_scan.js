@@ -29,13 +29,13 @@ function postScanRequest ()
   full = imgfile.split('?')[0];
   temp = full.split('/');
   imgFile = "../uploads/" + temp[temp.length - 1];
-  imageSet = "../../../include/Ballads/Images/";
+  imageSet = "../images/ballads/";
   keypoints = "../../../include/Ballads/Keypoints_10_2017/";
   paramFile = "ballad_param";
 
   if ( document.querySelector('input[name=imageset]:checked').value == "BL-flickr")
   {
-    imageSet = "../../../include/BL-flickr/Smaller/";
+    imageSet = "../images/flickr/";
     keypoints = "../../../include/BL-flickr/Keypoints_10_2017/";
     paramFile = "flickr_param";
   }//if flickr
@@ -89,7 +89,7 @@ function loadresult(path)
         res.style.marginTop =  "10px";
         res.style.marginLeft =  "0px";
 
-        img.src = "http://beeb.english.ucsb.edu/Thumbnails101613/" + files[i]["name"] + ".jpg";
+        img.src = "/archv/" + path.slice(3) + files[i]["name"] + ".jpg";
         img.style.height =  "150px";
         img.style.width =  "100%";
 

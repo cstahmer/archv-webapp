@@ -8,16 +8,20 @@
 /outputs/*
 /backup/*
 /sample/*
+/images/*
 
 <<<<<<< HEAD
 /archive-vision/
 /jetty/
+/sample/
 =======
 /archv
 /archive-vision/
 /jetty
+/sample
 >>>>>>> home-dev
 /uploads/
 /outputs/
 /backup
 /sample/
+/images/

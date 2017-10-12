@@ -15,7 +15,6 @@
 
   $curl = curl_init($url);  
 
-
   $result=curl_exec($curl);
   echo $result[0];
 
