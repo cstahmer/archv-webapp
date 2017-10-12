@@ -26,7 +26,9 @@ function postScanRequest ()
   outputFile = "../outputs/outputScan.txt";
 
   imgfile = document.getElementById("upload").src;
-  imgFile = imgfile.split('?')[0];
+  full = imgfile.split('?')[0];
+  temp = full.split('/');
+  imgFile = "../uploads/" + temp[temp.length - 1];
   imageSet = "../../../include/Ballads/Images/";
   keypoints = "../../../include/Ballads/Keypoints_10_2017/";
   paramFile = "ballad_param";
