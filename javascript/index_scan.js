@@ -54,8 +54,12 @@ function postScanRequest ()
     {
         var data = JSON.parse(http.responseText);
         loadresult(data.file);
-    }
-  }
+        if ( !(document.querySelector('input[name=imageset]:checked').value == "BL-flickr"))
+        {
+          postTagsRequest(outputFile);
+        }//if ebba
+    }// if good response
+  } // callback
 
   http.send(params);
 }
@@ -81,8 +85,7 @@ function loadresult(path)
         var img = document.createElement("img");
         var desc = document.createElement("div");
 
-        res.style.height =  "200px";
-        res.style.width =  "150px";
+        res.style.height =  "300px";
         res.style.border =  "3px solid #333";
         res.style.marginRight =  "10px";
         res.style.marginBottom =  "10px";
@@ -90,12 +93,10 @@ function loadresult(path)
         res.style.marginLeft =  "0px";
 
         img.src = "/archv/" + path.slice(3) + files[i]["name"] + ".jpg";
-        img.style.height =  "150px";
-        img.style.width =  "150px";
+        img.style.height =  "250px";
 
-        desc.innerHTML = "<center>" + files[i]["name"] + "<br><i>distance: " +files[i]["distance"] + "</i></center>";
+        desc.innerHTML = "<center>" + files[i]["name"] + "<br><i>matches: " +files[i]["distance"] + "</i></center>";
         desc.style.height =  "50px";
-        desc.style.width =  "150px";
         desc.style.overflow= "hidden";
         desc.style.display= "block";
         desc.style.textOverflow =  "ellipsis";

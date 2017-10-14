@@ -9,28 +9,33 @@
   <!-- scripts -->
   <script src="./javascript/upload.js"></script>
   <script src="./javascript/index_scan.js"></script>
+  <script src="./javascript/tags.js"></script>
 
   <!-- css -->
   <link rel="stylesheet" href="./styles/mystyle.css">
 </head>
 
 <body>
-<div class="sidebar"> 
-  <h1 class="sidebar-h1"> Archv </h1>
-  <ul class="sidebar-ul">
-    <li class="sidebar-li"><a href="index.html"> home </a></li>
-    <li class="sidebar-li"><a href="./pages/overview.html"> overview </a></li>
-    <li class="sidebar-li"><a href="./pages/download.html"> download </a></li>
-    <li class="sidebar-li"><a href="./pages/api.html"> api </a></li>
-    <li class="sidebar-li"><a href="./pages/try.html"> try </a></li>
-    <li class="sidebar-li"><a href="./pages/imagesets.html"> imagesets </a></li>
-    <li class="sidebar-li"><a href="./pages/contact.html"> contact </a></li>
-  </ul>
-</div>
+  <!-- SIDEBAR -->
+  <div class="sidebar"> 
+    <h1 class="sidebar-h1"> Archv </h1>
+    <ul class="sidebar-ul">
+      <li class="sidebar-li"><a href="index.html"> home </a></li>
+      <li class="sidebar-li"><a href="./pages/overview.html"> overview </a></li>
+      <li class="sidebar-li"><a href="./pages/download.html"> download </a></li>
+      <li class="sidebar-li"><a href="./pages/api.html"> api </a></li>
+      <li class="sidebar-li"><a href="./pages/try.html"> try </a></li>
+      <li class="sidebar-li"><a href="./pages/imagesets.html"> imagesets </a></li>
+      <li class="sidebar-li"><a href="./pages/contact.html"> contact </a></li>
+   </ul>
+  </div>
+  <!-- /SIDEBAR -->
 
 <div class="main">
-    <div class="text">
+  <div class="text">
     <h1 class="main-h1"> Scan Database </h1>
+
+    <!-- UPLOAD -->
     <input type="file" name="fileToUpload" id="fileToUpload">
     <button name="post" onclick="postUpload()"> Upload </button>
 
@@ -38,25 +43,28 @@
     <br><br>
     <table>
       <tr>
-	<td>
-        	<div id="uploadDiv" style="margin: 30px; border: 1px solid #333; display: block; min-height: 200px; min-width: 500px"> </div>
-	</td>
-	<td valign="top">
-        <div style="margin-top: 30px" id="uploadDesc"></div>
-	</td>
-      </tr>
-    </table>
+        <td>
+          <div id="uploadDiv" style="margin: 30px; border: 1px solid #333; display: block; min-height: 200px; min-width: 500px"> </div>
+        </td>
+        <td valign="top">
+          <div style="margin-top: 30px" id="uploadDesc"></div>
+          <div style="margin-top: 10px" id="tagDiv"> </div>
+        </td>
+    </tr>
+</table>
+<!-- /UPLOAD -->
 
-    <input type="radio" checked id="ebba" value="Ebba" name="imageset"> Ebba <input type="radio" id="flickr" value="BL-flickr" name="imageset"> BL-flickr
-    <br>
-    <br><br>
+<!-- CONTENT -->
+<input type="radio" checked id="ebba" value="Ebba" name="imageset"> Ebba <input type="radio" id="flickr" value="BL-flickr" name="imageset"> BL-flickr
+<br>
+<br><br>
 
-    <button name="post" onclick="postScanRequest()"> Scan Database</button>
-    <br>
-    <p id="status"></p>
-    <p id="error"></p>
-    <br>
-    <div style="display:flex; flex-direction: row; flex-flow:wrap; width: 1000px; min-height: 600px;" id="scanResult"></div>
+<button name="post" onclick="postScanRequest()"> Scan Database</button>
+<br>
+<p id="status"></p>
+<p id="error"></p>
+<br>
+<div style="display:flex; flex-direction: row; flex-flow:wrap; width: 1000px; min-height: 600px;" id="scanResult"></div>
 
 </div>
 </body>

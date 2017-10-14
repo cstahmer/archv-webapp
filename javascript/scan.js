@@ -41,8 +41,6 @@ function postScanRequest ()
     if (http.readyState == 4 && http.status == 200) 
     {
         var data = JSON.parse(http.responseText);
-        console.log(data);
-        console.log(data.file);
         loadresult(data.file);
     }
   }
