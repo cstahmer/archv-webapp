@@ -85,15 +85,14 @@ function loadresult(path)
         var img = document.createElement("img");
         var desc = document.createElement("div");
 
-        res.style.height =  "300px";
-        res.style.border =  "3px solid #333";
+        res.style.width =  "300px";
         res.style.marginRight =  "10px";
         res.style.marginBottom =  "10px";
         res.style.marginTop =  "10px";
         res.style.marginLeft =  "0px";
 
         img.src = "/archv/" + path.slice(3) + files[i]["name"] + ".jpg";
-        img.style.height =  "250px";
+        img.style.width =  "300px";
 
         desc.innerHTML = "<center>" + files[i]["name"] + "<br><i>matches: " +files[i]["distance"] + "</i></center>";
         desc.style.height =  "50px";
@@ -106,7 +105,7 @@ function loadresult(path)
         res.appendChild(desc);
         table.appendChild(res);
       }
-      Status.innerHTML = "finished";
+    Status.innerHTML = "";
     if (files.length == 0) {
       e = document.getElementById("error");
       e.innerHTML = "no matches found for this image";

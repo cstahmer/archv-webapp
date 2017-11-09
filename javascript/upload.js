@@ -32,13 +32,12 @@ function postUpload ()
          var name = document.createElement("p");
          name.id = "uploadName";
          upload.id = "upload";
-         upload.style.width = "500px";
+         upload.style.width = "300px";
          upload.src = "./uploads/" + http.responseText + "?" + Date.now();
          name.innerHTML = http.responseText;
 
          document.getElementById("uploadDiv").appendChild(upload);
-         document.getElementById("uploadDesc").innerHTML = "success!";
-         document.getElementById("uploadDesc").appendChild(name);
+         postIndexShowRequest();
       } // if
 
       else 
@@ -49,3 +48,65 @@ function postUpload ()
     } // if call okay
   }//callback
 } //upload
+
+
+// POSTINDEXSHOWREQUEST()
+
+function postIndexShowRequest () 
+{
+// ====================================================================================
+// Parameters
+// ====================================================================================
+  var paramFile = "ballad_param";
+  imgfile = document.getElementById("upload").src;
+  full = imgfile.split('?')[0];
+  temp = full.split('/');
+  var imgFile = "../uploads/" + temp[temp.length - 1];
+  var outputFile = "../outputs/output.jpg"; 
+
+
+  if ( document.querySelector('input[name=imageset]:checked').value == "BL-flickr")
+  {
+    imageSet = "../images/flickr/";
+    keypoints = "../../../include/BL-flickr/Keypoints_10_2017/";
+    paramFile = "flickr_param";
+   }// if flickr
+  var params = "input=" + imgFile + "&output=" + outputFile + "&param=" + paramFile;
+
+// ====================================================================================
+// Generate and Send Request
+// ====================================================================================
+  var http = new XMLHttpRequest();
+  var url = "./php/showkeypoints.php";
+
+  http.open("POST", url, true);
+  http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  http.send(params);
+
+// ====================================================================================
+// CallBack Function
+// ====================================================================================
+  http.onreadystatechange = function ()
+  {
+    if (http.readyState == 4 && http.status == 200) 
+    {
+        console.log(http.responseText);
+        var data = JSON.parse(http.responseText);
+        if ( http.responseText.includes("file")) 
+        {
+          var file = data["file"];
+      	  var temp = file.split('/');
+      	  var fname = temp[2];
+          var result = document.createElement("img");
+          result.id = "showResult";
+          result.style.width = "300px";
+          result.src = "./outputs/output.jpg"+ "?t=" + new Date().getTime();
+          document.getElementById("showOutput").appendChild(result);
+        }
+        else 
+        {
+          console.log(data);
+        }
+    } // if response code and status are correct
+  }// callback function on response
+}

@@ -35,37 +35,40 @@
 <div class="main">
   <div class="text">
     <h1 class="main-h1"> Scan Database </h1>
-    <p> Archv (Archive-vision) is a tool to search an imageset to find the best matches with your seed image
+    <p> Archv (Archive-vision) is a tool to search an imageset to find the best matches with your seed image.
         This page allows you to upload and compare an image of your choice with either the English Broadside Ballad Association imageset 
-        or a curated image set from the British Libraries Flickr. </p>
-    <p> Go to the <a href="./pages/overview.html/">overview </a> to learn how it works. </p>
+        or a curated image set from the British Library's Flickr. </p>
+    <p> Go to the <a href="./pages/overview.html">overview </a> to learn how it works. </p>
+
+    <br>
+    <hr>
+    <h3 class="main-h3"> First </h3>
+    <p> Select the Image set that you would like to compare your image to: <p>
+<input type="radio" checked id="ebba" value="Ebba" name="imageset"> Ebba <input type="radio" id="flickr" value="BL-flickr" name="imageset"> BL-flickr
+  
+<br>
+<br><br>
+    <h3 class="main-h3"> Second </h3>
+    <p> Upload your image as the seed image. When the file is uploaded, the keypoints overlayed on the image will be displayed. </p>
 
     <!-- UPLOAD -->
     <input type="file" name="fileToUpload" id="fileToUpload">
     <button name="post" onclick="postUpload()"> Upload </button>
 
-
-    <br><br>
-    <table>
-      <tr>
-        <td>
-          <div id="uploadDiv" style="margin: 30px; border: 1px solid #333; display: block; min-height: 200px; min-width: 500px"> </div>
-        </td>
-        <td valign="top">
-          <div style="margin-top: 30px" id="uploadDesc"></div>
-          <div style="margin-top: 10px" id="tagDiv"> </div>
-        </td>
-    </tr>
-</table>
-<!-- /UPLOAD -->
+    <div style="display: flex; flex-direction: row">
+    <div id="uploadDiv" style="margin-right: 30px; margin-top: 20px;  width: 300px;"> </div>
+    <div id="showOutput" style="margin-right: 30px; margin-top: 20px; width: 300px"></div>
+    </div>
+    <div style="margin-top: 30px" id="uploadDesc"></div>
+    <!-- /UPLOAD -->
 
 <!-- CONTENT -->
-<input type="radio" checked id="ebba" value="Ebba" name="imageset"> Ebba <input type="radio" id="flickr" value="BL-flickr" name="imageset"> BL-flickr
-<br>
-<br><br>
+    <h3 class="main-h3"> Third </h3>
+    <p> Click the scan Database button to see the matches found within the image set. It will take about 15 to 30 seconds to complete. <p>
 
 <button name="post" onclick="postScanRequest()"> Scan Database</button>
 <br>
+    <div style="margin-top: 10px" id="tagDiv"> </div>
 <p id="status"></p>
 <p id="error"></p>
 <br>
