@@ -36,6 +36,8 @@ function postUpload ()
          upload.src = "./uploads/" + http.responseText + "?" + Date.now();
          name.innerHTML = http.responseText;
 
+         document.getElementById("uploadDiv").innerHTML = "";
+         document.getElementById("showOutput").innerHTML = "";
          document.getElementById("uploadDiv").appendChild(upload);
          postIndexShowRequest();
       } // if
@@ -101,6 +103,7 @@ function postIndexShowRequest ()
           result.id = "showResult";
           result.style.width = "300px";
           result.src = "./outputs/output.jpg"+ "?t=" + new Date().getTime();
+          document.getElementById("showOutput").innerHTML = "";
           document.getElementById("showOutput").appendChild(result);
         }
         else 
