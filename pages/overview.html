@@ -113,7 +113,9 @@
 		<p>
 		<b> showKeypoints </b> reads in a SURF parameter file, an image, and an output file path. 
 		It then outputs to an image file a copy of the original image with circles drawn representing the detected keypoints.
+    Below is an example of an image from the British Library's flickr image set with the keypoints drawn on.
 		</p>
+    <center><img style="width: 800px" src="../images/show.jpg"></img></center>
 
 		<p> 
 		Usage for showKeypoints: 
@@ -167,7 +169,9 @@
 		<h3 class="main-h3"> Using scanDatabase  </h3>
 		<p>
 		<b>scanDatabase</b> reads in a seed image, the directory of .yml files, a filepath to an output json (text) file, and the path to the SURF parameter file.
+      Below, is an illustration of the top three matches next to the seed image as found by scanDatabase.
 	  </p>
+    <center><img style="width: 800px" src="../images/matches.jpg"></img></center>
 		<p> 
 		Usage for scanDatabase:: 
 		</p>
@@ -191,10 +195,17 @@
 		<p>
 		<b>drawMatches</b> takes as input two images, the path to an output image file as well as the path to the parameter file. 
 		The code is self contained so you can input any two images and any SURF parameter file to find the keypoints that match and have passed the robust homography filter.
+    Below is an example of two images and the robust matches they share.
+		</p>
+    <center><img style="width: 800px" src="../images/compare.jpg"></img></center>
+		<p> 
+		Usage for drawMatches:: 
 		</p>
 		<div class="inline-code"> 
 			$ ./drawMatches.exe -i1 &ltpath to seed image one&gt -i2 &ltpath to image for comparison&gt -o &ltpath to output file&gt -p &ltpath to parameter filea&gt
 		</div>
+    <br>
+    <br>
 		<!-- DRAW MATCHES -->
 
 

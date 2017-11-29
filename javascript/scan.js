@@ -3,15 +3,16 @@
 function resetScan()
 {
  //scanDatabase result
-  if (document.getElementById('scanTable'))
+  if (document.getElementById('scanResult'))
   {
-    var temp = document.getElementById('scanTable');
+    var temp = document.getElementById('scanResult');
     temp.innerHTML = "";
   }
 }
 
 function postScanRequest () 
 {
+  resetScan();
   // Parameters
   var imgFile = "";
   var imageSet = "";
@@ -40,6 +41,7 @@ function postScanRequest ()
   {
     if (http.readyState == 4 && http.status == 200) 
     {
+        resetScan();
         var data = JSON.parse(http.responseText);
         loadresult(data.file);
     }
