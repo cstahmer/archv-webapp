@@ -20,15 +20,13 @@
   <div class="sidebar"> 
     <h1 class="sidebar-h1"> Archv </h1>
     <ul class="sidebar-ul">
-      <li class="sidebar-li active"><a href="index.html"> home </a></li>
-      <li class="sidebar-li"><a href="./pages/overview.html"> overview </a></li>
-      <li class="sidebar-li"><a href="./pages/download.html"> download </a></li>
-      <li class="sidebar-li"><a href="./pages/api.html"> api </a></li>
-      <li class="sidebar-li"><a href="./pages/try.html"> try </a></li>
-      <li class="sidebar-li"><a href="./pages/imagesets.html"> imagesets </a></li>
-      <li class="sidebar-li"><a href="./pages/contact.html"> contact </a></li>
+      <li class="sidebar-li active"><a href="index.html"> Home </a></li>
+      <li class="sidebar-li"><a href="./pages/overview.html"> Overview </a></li>
+      <li class="sidebar-li"><a href="./pages/api.html"> Jetty API </a></li>
+      <li class="sidebar-li"><a href="./pages/download.html"> Download </a></li>
+      <li class="sidebar-li"><a href="./pages/contact.html"> Contact </a></li>
    </ul>
-   <h3 class="sidebar-h1" style="position: absolute; bottom: 15px"> Arthur Koehl<br>  Digital Scholars Lab </h3>
+   <h3 class="sidebar-h1" style="position: absolute; bottom: 15px"> Arthur Koehl<br>  Digital Scholars Lab <br>Dr. Carl Stahmer </h3>
   </div>
   <!-- /SIDEBAR -->
 
@@ -36,20 +34,23 @@
   <div class="text">
     <h1 class="main-h1"> Scan Database </h1>
     <p> Archv (Archive-vision) is a tool to search an imageset to find the best matches with your seed image.
-        This page allows you to upload and compare an image of your choice with either the English Broadside Ballad Association imageset 
+        This page allows you to upload and compare an image of your choice with either the English Broadside Ballad Archive imageset 
         or a curated image set from the British Library's Flickr. </p>
-    <p> Go to the <a href="./pages/overview.html">overview </a> to learn how it works. </p>
-    <p> Go to the <a href="./pages/download.html">download </a> to set up on your system. </p>
+    <p> Go to the <a href="./pages/overview.html">overview </a> page to learn how it works. </p>
+    <p> Go to the <a href="./pages/download.html">download </a> page to set up on your system. </p>
 
     <br>
     <hr>
-    <h3 class="main-h3"> First </h3>
+    <h3 class="main-h3"> Step One </h3>
+    <p> If you do not have an image, try one of these: <p>
+    <p style="margin-left: 25px"> British Library Flickr: <a href="./images/flickr/11000098404_fb25d9b77d_o.jpg"> 11000098404_fb25d9b77d_o.jpg </a> <br>
+        Broadside Ballad: <a href="./images/ballads/30165-40.jpg"> 30165-40.jpg </a></p>
     <p> Select the Image set that you would like to compare your image to: <p>
 <input type="radio" checked id="ebba" value="Ebba" name="imageset"> Ebba <input type="radio" id="flickr" value="BL-flickr" name="imageset"> BL-flickr
   
 <br>
 <br><br>
-    <h3 class="main-h3"> Second </h3>
+    <h3 class="main-h3"> Step Two </h3>
     <p> Upload your image as the seed image. When the file is uploaded, the keypoints overlayed on the image will be displayed. </p>
 
     <!-- UPLOAD -->
@@ -64,7 +65,7 @@
     <!-- /UPLOAD -->
 
 <!-- CONTENT -->
-    <h3 class="main-h3"> Third </h3>
+    <h3 class="main-h3"> Step Three </h3>
     <p> Click the scan Database button to see the matches found within the image set. It will take about 15 to 30 seconds to complete. <p>
 
 <button name="post" onclick="postScanRequest()"> Scan Database</button>
